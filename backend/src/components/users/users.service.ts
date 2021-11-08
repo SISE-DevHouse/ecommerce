@@ -12,6 +12,7 @@ import * as bcrypt from 'bcrypt';
 import { DummyPromise } from '../../assets/promises.assets';
 import { UserEntity } from 'src/models/user.entity';
 import { ROUNDS_BCRYPT } from 'src/config/bcrypt.config';
+import { URL_Server } from 'src/config/server.config';
 
 @Injectable()
 export class UsersService {
@@ -116,7 +117,74 @@ export class UsersService {
         );
     }
 
+    // Actualiza un usuario
+    async UpdateUserNickUnique(user: UserEntity): Promise<UserEntity> {
+        // Contrasela antigua
+        let contraseniaOld = '';
 
+        // Hacemos una busqueda por id
+        return await this.userRepository.findOne({
+            where: [
+                // hacemos un where donde buscamos por id.
+                { id: user.id }
+            ]
+        }).then(resultFind => {
+
+            // Validamos si encontro al usuario.
+            if (!resultFind) throw new Error('user_does_not_exist');
+
+            // Guardamos el password actual.
+            contraseniaOld = resultFind.password;
+
+            // verificamos que el email no este en uso, recordemos que el email es unico.
+            return this.userRepository.findOne({
+                where: [
+                    // hacemos un where donde buscamos por email y no sea del mismo id.
+                    {
+                        id: Not(resultFind.id),
+                        nick: user.nick
+                    }
+                ]
+            });
+        }).then(result => {
+            // validamos si exite un resultado.
+            if (result) {
+                // Si existe, generamos un error para no continual.
+                throw 'REPEAT_NICK';
+            }
+
+            // Si existe el password lo encriptamos.
+            if (user.password) {
+                // encriptamos el password.
+                return bcrypt.hash(user.password, ROUNDS_BCRYPT);
+            } else {
+                // retornamos la antigua contraseña.
+                return contraseniaOld;
+            }
+
+        }).then(
+            (password: string) => {
+                // Validamos el resultado.
+                if (!password) throw new Error('Revisar User.service la funcion hash o el retun no, respondio como se esperaba.');
+
+                // asignamos el password encriptado al objeto
+                user.password = password;
+
+                // Actualizamos
+                return this.userRepository.update(user.id, user);
+            }
+        ).then(resultUpdate => {
+
+            if (!resultUpdate) throw new Error('userRepository.update no respondio como esperabamos.');
+
+            // borramos el password por seguridad.
+            // delete user.password;
+            user.password = '';
+
+            // Envio respuesta con el resultado recibido del ultimo paso
+            return user;
+        });
+    }
 
     // Elimina a un usuario por id
     async Delete(userId: number): Promise<UserEntity> {
@@ -151,6 +219,22 @@ export class UsersService {
                 return user;
             }
         )
+    }
+
+    
+    // Actualiza el filename del usuario ademas retorna el newfilename.
+    async UpdateImageUser(id: number, newFilename: string): Promise<string> {
+
+
+        let urlImage: string = URL_Server.back + '/' + newFilename;
+        // Hacemos una busqueda por id
+        return await this.userRepository.update(id, { filename: urlImage }).then(resultUpdate => {
+
+            if (!resultUpdate) throw new Error('userRepository.update no respondio como esperabamos.');
+
+            // Envio respuesta con el resultado recibido del ultimo paso
+            return urlImage;
+        });
     }
 
 }
