@@ -1,0 +1,1 @@
+El directorio congif, contiene variables de configuracion.
