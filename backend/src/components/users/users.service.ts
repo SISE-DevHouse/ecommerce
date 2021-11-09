@@ -221,6 +221,26 @@ export class UsersService {
         )
     }
 
+    async GetUserByNick(nick: string): Promise<UserEntity> {
+
+        return await DummyPromise().then(
+            result => {
+                //
+                return this.userRepository.findOne({
+                    where: [
+                        // hacemos un where donde buscamos por email.
+                        { nick: nick }
+                    ]
+                });
+            }
+        ).then((resultUser: UserEntity) => {
+
+            if (!resultUser) throw new Error('user_was_not_found');
+
+            return resultUser;
+        });
+    }
+
     
     // Actualiza el filename del usuario ademas retorna el newfilename.
     async UpdateImageUser(id: number, newFilename: string): Promise<string> {

@@ -24,7 +24,6 @@ import { AuthModule } from './components/auth/auth.module';
     synchronize: true,
   }), 
   
-// Aqui iran todos los modulos.
   UsersModule,
   AuthModule,
 ],
