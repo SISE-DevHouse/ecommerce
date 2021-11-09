@@ -2,15 +2,18 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
-// TypeOrm
+// TypeOrm.
 import { TypeOrmModule } from '@nestjs/typeorm';
-// Path
+// Path.
 import { SQLITE_PATH } from './config/path.config';
 
 
-// Others
+// Others.
 import { join } from 'path';
+
+// Aqui iran todos los modulos.
 import { UsersModule } from './components/users/users.module';
+import { AuthModule } from './components/auth/auth.module';
 
 @Module({
   imports: [   
@@ -19,7 +22,11 @@ import { UsersModule } from './components/users/users.module';
     database: join(SQLITE_PATH, 'dbSise.sqlite3'),
     entities: [join(__dirname, '**/**.entity{.ts,.js}')],
     synchronize: true,
-  }), UsersModule
+  }), 
+  
+// Aqui iran todos los modulos.
+  UsersModule,
+  AuthModule,
 ],
   controllers: [AppController],
   providers: [AppService],
