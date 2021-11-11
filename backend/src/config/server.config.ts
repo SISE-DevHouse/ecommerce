@@ -7,19 +7,18 @@ export const URL_Server = {
 };
 */
 
-/* 
+
 export const URL_Server = {
-    front: 'https://transgas.web.app',
-    back: 'https://transgas.codev.site',
+    front: 'https://devhouse.web.app',
+    back: 'https://test.tulujuria.com',
     version: 'v1.9h',
     puertoSocket: 4000,
 };
-*/
 
 // El puerto 3101 lo estoy dejando para el proyecto sise.
-export const URL_Server = {
+/* export const URL_Server = {
     front: 'http://localhost:3101',
     back: 'http://localhost:3100',
     version: 'v0.01',
     puertoSocket: 3102,
-};
+}; */
