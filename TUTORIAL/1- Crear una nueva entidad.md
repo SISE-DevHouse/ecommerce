@@ -3,17 +3,16 @@
 
 
 ### Generamos el modulo
-nest g module components/users
+nest g module components/products
 
 ### Generamos los servicios
-nest g service components/users
+nest g service components/products
 
 ### Generamos el controlador
-nest g controller components/users
+nest g controller components/products
 
 ### Generamos la Entidad
-nest g class models/user.entity
-
+nest g class models/product.entity
 
 
 
