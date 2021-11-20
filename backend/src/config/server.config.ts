@@ -10,7 +10,7 @@ export const URL_Server = {
 
 export const URL_Server = {
     front: 'https://devhouse.web.app',
-    back: 'https://test.tulujuria.com',
+    back: 'https://transgas.codev.com',
     version: 'v1.9h',
     puertoSocket: 4000,
 };
