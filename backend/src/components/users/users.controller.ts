@@ -26,7 +26,8 @@ export class UsersController {
         private readonly _usersService: UsersService,
     ) { }
 
-
+       
+    // www.ecomerce.com/users/1
     @Get(':id')
     async Get(@Headers() headers, @Param('id') id): Promise<any> {
 
@@ -139,7 +140,8 @@ export class UsersController {
             }
         );
     }
-
+    
+    // www.ecomerce.com/users/create
     @Post('create')
     async Create(@Headers() headers, @Body() user: UserEntity): Promise<any> {
 
@@ -198,6 +200,7 @@ export class UsersController {
         );
     }
 
+    // www.ecomerce.com/users/1/update
     @Put(':id/update')
     async UpdateUser(@Headers() headers, @Param('id') id, @Body() user: UserEntity): Promise<any> {
 
