@@ -17,7 +17,7 @@ import { ProductEntity } from '../../models/product.entity';
     
     ],
     // Exportamos el servicio para que lo usemos desde otro lado.
-    exports: [ProductEntity],
+    exports: [ProductsService],
 })
 
 export class ProductsModule {

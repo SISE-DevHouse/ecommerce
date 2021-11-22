@@ -10,28 +10,27 @@ import { Not } from "typeorm";
 // Otras librerias. 
 import * as bcrypt from 'bcrypt';
 import { DummyPromise } from '../../assets/promises.assets';
-import { UserEntity } from 'src/models/user.entity';
-import { ProductEntity } from 'src/models/product.entity';
+import { DetalleventaEntity } from 'src/models/detalleventa.entity';
 import { ROUNDS_BCRYPT } from 'src/config/bcrypt.config';
 import { URL_Server } from 'src/config/server.config';
 
-
 @Injectable()
-export class ProductsService {
+export class DetalleventasService {
 
     // 1 agregamos la InjectRepository y instanciamos el Repositorio 
     constructor(
-        @InjectRepository(ProductEntity)
-        private productRepository: Repository<ProductEntity>,
+        @InjectRepository(DetalleventaEntity)
+        private DetalleventaRepository: Repository<DetalleventaEntity>,
     ) { }
 
-    async CreateProduct(product: ProductEntity): Promise<ProductEntity> {
+ 
+    async CreateDetalle(detalle: DetalleventaEntity): Promise<DetalleventaEntity> {
 
-        // buscamos si el nick o email ya esta en uso.
-        return await this.productRepository.save(product).then(
-            (resultSave: ProductEntity) => {
+        
+        return this.DetalleventaRepository.save(detalle).then(
+            (resultSave: DetalleventaEntity) => {
                 // Validamos si encontro al usuario.
-                if (!resultSave) throw new Error('ERROR_PRODUCT_SERVICE_CREATE');
+                if (!resultSave) throw new Error('ERROR_DETALLE_SERVICE_CREATE_DETALLE_SAVE_DETALLE');
                 return resultSave;
             }
         );

@@ -15,6 +15,7 @@ import { join } from 'path';
 import { UsersModule } from './components/users/users.module';
 import { AuthModule } from './components/auth/auth.module';
 import { ProductsModule } from './components/products/products.module';
+import { DetalleventasModule } from './components/detalleventas/detalleventas.module';
 
 const defaultOptions = {
   type: 'postgres',
@@ -59,6 +60,7 @@ const defaultOptions = {
     UsersModule,
     AuthModule,
     ProductsModule,
+    DetalleventasModule,
   ],
   controllers: [AppController],
   providers: [AppService],
