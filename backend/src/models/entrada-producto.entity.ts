@@ -25,4 +25,19 @@ export class EntradaProductoEntity {
         // Puede ser null falso
         { nullable: false })
     fecha: string; 
+
+    
+    //auditoria
+    @Column()
+    userIdCreated: number;
+    @Column()
+    dateCreated: string;
+
+    @Column({ nullable: true })
+    userIdUpdated: number;
+    @Column({ nullable: true })
+    dateUpdated: string;
+
+    @Column({ nullable: false })
+    status: boolean;
 }
