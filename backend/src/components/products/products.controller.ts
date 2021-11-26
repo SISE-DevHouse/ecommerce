@@ -16,7 +16,7 @@ import { UserEntity } from '../../models/user.entity';
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { EditFileName, ImageFileFilter } from '../../middleware/image.middleware';
 import { FOLDER_UPLOADS } from '../../config/path.config';
-import { ProductEntity } from 'src/models/product.entity';
+import { ProductEntity } from '../../models/product.entity';
 
 @Controller('products')
 export class ProductsController {
