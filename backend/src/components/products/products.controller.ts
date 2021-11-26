@@ -215,7 +215,7 @@ export class ProductsController {
                 if (!isNaN(id) && product && product.codigo && product.costo && product.nombre && product.precio) {
  
                     // retornamos la respuesta del servicio.
-                    return this._productService.UpdateProduct(product,headerToken.id);
+                    return this._productService.UpdateProduct(id, product, headerToken.id);
                 } else {
                     // caso contrario retornamos un error
                     throw 'MISSING_FIELS';

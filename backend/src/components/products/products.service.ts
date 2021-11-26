@@ -29,8 +29,8 @@ export class ProductsService {
     async CreateProduct(product: ProductEntity,userCreateId:number): Promise<ProductEntity> {
 
         // auditoria
-        product.userIdUpdated = userCreateId;
-        product.dateUpdated = GetDate();
+        product.userIdCreated = userCreateId;
+        product.dateCreated = GetDate();
         product.status = Boolean(product.status);
 
         // buscamos si el nick o email ya esta en uso.
@@ -85,9 +85,9 @@ export class ProductsService {
 
     }
 
-    async UpdateProduct(product : ProductEntity,idUserUpdate:number): Promise<ProductEntity> {
+    async UpdateProduct(id:number, product : ProductEntity, idUserUpdate:number): Promise<ProductEntity> {
    
-        product.id = Number(product.id);
+        product.id = Number(id);
         // auditoria
         product.userIdUpdated = idUserUpdate;
         product.dateUpdated = GetDate();
