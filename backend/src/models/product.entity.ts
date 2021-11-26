@@ -8,13 +8,8 @@ export class ProductEntity {
     @Column(
         // Puede ser null falso
         { nullable: false })
-    codigo: number;
-    
-    @Column(
-        // Puede ser null falso
-        { nullable: false })
-    idcategoria: number;
-        
+    codigo: number; 
+
     @Column(
         // Puede ser null falso
         { nullable: false })
@@ -76,7 +71,6 @@ export class ProductEntity {
     ) {
         this.id = id || null;
         this.codigo = codigo|| 0;
-        this.idcategoria = idcategoria || null;
         this.nombre = nombre || '';
         this.descripcion = descripcion|| '';
         this.costo = costo|| 0;
