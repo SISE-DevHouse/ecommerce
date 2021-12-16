@@ -40,23 +40,27 @@ const defaultOptions = {
     //}),
     
     // CONEXXION SLQLITE
-      TypeOrmModule.forRoot({
-      type: 'sqlite',
-      database: join(SQLITE_PATH, 'dbSise.sqlite3'),
+
+   //   TypeOrmModule.forRoot({
+   //   type: 'sqlite',
+   //   database: join(SQLITE_PATH, 'dbSise.sqlite3'),
+   //   entities: [join(__dirname, '**/**.entity{.ts,.js}')],
+   //   synchronize: true,
+   // }),
+
+
+
+
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: 'us-cdbr-east-05.cleardb.net',
+      port: 3306,
+      username: 'user:bcb3797ad36eeb',
+      password: 'PW:a8c7770b',
+      database: 'TEST_PPI_SISE',
       entities: [join(__dirname, '**/**.entity{.ts,.js}')],
       synchronize: true,
     }),
-
-    //TypeOrmModule.forRoot({
-    //  type: 'mysql',
-    //  host: '34.123.224.207',
-    //  port: 3306,
-    //  username: 'cristian',
-    //  password: 'adminuser',
-    //  database: 'TEST_PPI_SISE',
-    //  entities: [join(__dirname, '**/**.entity{.ts,.js}')],
-    //  synchronize: true,
-    //}),
 
     UsersModule,
     AuthModule,
