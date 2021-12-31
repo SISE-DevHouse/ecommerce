@@ -12,14 +12,14 @@ async function bootstrap() {
   //
   const port = +configService.get<number>(SERVER_PORT) || 5000;
 
-  app.enableCors();
+  //app.enableCors();
   
 
   
 
   
   // Inicializamos DialogFlow
-  DialogFlowInit();
+  //DialogFlowInit();
 
   const options = {
     'origin': '*',

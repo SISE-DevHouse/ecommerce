@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToOne } from 'typeorm';
 
-@Entity('WhatsappContactBaileys')
+@Entity('whatsapp_contact_baileys')
 export class WhatsappContactBaileysEntity {
 
     @PrimaryGeneratedColumn()
