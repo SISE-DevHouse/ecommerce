@@ -21,6 +21,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@adiwajshing/baileys": "^3.5.3",
     "@nestjs/common": "^8.0.0",
     "@nestjs/config": "^1.1.5",
     "@nestjs/core": "^8.0.0",
@@ -30,6 +31,7 @@
     "@nestjs/typeorm": "^8.0.2",
     "@types/bcrypt": "^3.0.0",
     "bcrypt": "^4.0.1",
+    "dialogflow": "^1.2.0",
     "jwt-decode": "^3.1.2",
     "moment": "^2.29.1",
     "mysql2": "^2.3.3",

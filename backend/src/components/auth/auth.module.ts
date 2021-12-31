@@ -12,7 +12,6 @@ import { UsersModule } from '../users/users.module';
 
 
 @Module({
-  
   providers: [AuthService, LocalStrategy, JwtStrategy],
   // Importamos los modulos que usaremos.
   imports: [

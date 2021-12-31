@@ -21,7 +21,7 @@ export class AppController {
 
 
   // Guards(jwt)  valida que el token no halla caducado y exista, caso contrario invoca un error.
-  @UseGuards(AuthGuard('jwt'))
+  //@UseGuards(AuthGuard('jwt'))
   @Get()
   getHello(): string {
     return this.appService.getHello();
