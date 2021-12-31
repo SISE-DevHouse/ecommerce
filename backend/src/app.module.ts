@@ -17,6 +17,7 @@ import { AuthModule } from './components/auth/auth.module';
 import { ProductsModule } from './components/products/products.module';
 import { DetalleventasModule } from './components/detalleventas/detalleventas.module';
 import { EntradaProductoModule } from './components/entrada-producto/entrada-producto.module';
+import { WhatsappContactBaileysModule } from './components/whatsapp-contact-baileys/whatsapp-contact-baileys.module';
 
 const defaultOptions = {
   type: 'postgres',
@@ -63,6 +64,7 @@ const defaultOptions = {
     ProductsModule,
     DetalleventasModule,
     EntradaProductoModule,
+    WhatsappContactBaileysModule
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,10 +1,14 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { DialogFlowInit } from './assets/dialogflow.assets';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   
+  // Inicializamos DialogFlow
+  DialogFlowInit();
+
   const options = {
     'origin': '*',
     'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
@@ -18,6 +22,6 @@ async function bootstrap() {
   app.enableCors(options);
 
   
-  await app.listen(3000);
+  await app.listen(3001);
 }
 bootstrap();
