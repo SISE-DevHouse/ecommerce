@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 // TypeOrm.
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -17,6 +18,7 @@ import { AuthModule } from './components/auth/auth.module';
 import { ProductsModule } from './components/products/products.module';
 import { DetalleventasModule } from './components/detalleventas/detalleventas.module';
 import { EntradaProductoModule } from './components/entrada-producto/entrada-producto.module';
+import { DB_DATABASE, DB_HOST, DB_PASSWORD, DB_PORT, DB_USER } from './config/constants';
 
 const defaultOptions = {
   type: 'postgres',
@@ -29,6 +31,26 @@ const defaultOptions = {
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      envFilePath: '.env',
+      isGlobal: true
+    }),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) => ({
+        type: 'mariadb',
+        host: configService.get<string>(DB_HOST),
+        port: +configService.get<number>(DB_PORT),
+        username: configService.get<string>(DB_USER),
+        password: configService.get<string>(DB_PASSWORD),
+        database: configService.get<string>(DB_DATABASE),
+        entities: [__dirname + '/**/*.entity{.ts,.js}'],
+        synchronize: true,
+      }),
+      inject: [ConfigService],
+    }),
+
+
     // Conexion Pcon postgrest
     //TypeOrmModule.forRoot({
     //  type:"postgres",
@@ -40,27 +62,27 @@ const defaultOptions = {
     //}),
     
     // CONEXXION SLQLITE
+    //  TypeOrmModule.forRoot({
+    //  type: 'sqlite',
+    //  database: join(SQLITE_PATH, 'dbSise.sqlite3'),
+    //  entities: [join(__dirname, '**/**.entity{.ts,.js}')],
+    //  synchronize: true,
+    //}),
 
-   //   TypeOrmModule.forRoot({
-   //   type: 'sqlite',
-   //   database: join(SQLITE_PATH, 'dbSise.sqlite3'),
-   //   entities: [join(__dirname, '**/**.entity{.ts,.js}')],
-   //   synchronize: true,
-   // }),
-
-
-
-
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'us-cdbr-east-05.cleardb.net',
-      port: 3306,
-      username: 'user:bcb3797ad36eeb',
-      password: 'PW:a8c7770b',
-      database: 'TEST_PPI_SISE',
-      entities: [join(__dirname, '**/**.entity{.ts,.js}')],
-      synchronize: true,
-    }),
+    //TypeOrmModule.forRoot({
+    //  type: 'mysql',
+    //  host: 'us-cdbr-east-05.cleardb.net',
+    //  //port: 5000,
+    //  username: 'bcb3797ad36eeb',
+    //  password: 'a8c7770b',
+    //  database: 'heroku_c94fcd1a4e98e7c',
+    //  entities: [join(__dirname, '**/**.entity{.ts,.js}')],
+    //  //autoLoadEntities: true,
+    //  //synchronize en false en produccion
+    //  synchronize: true,
+    //  
+    //}),
+    
 
     UsersModule,
     AuthModule,
